@@ -1,0 +1,489 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Cara Citron Portfolio</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Engineering portfolio of Cara Citron: medical device hardware, CAD and fabrication, assembly and test, fluid modelling and embedded systems.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..125,500..800&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one reading column; each project is a "drawing sheet" with an engineering title block, figures on white plates. */
+:root{
+  --paper:#f4f6f7; --sheet:#ffffff; --ink:#132029; --muted:#55646e; --line:#d3dbe0;
+  --accent:#c9430c; --accent-ink:#ffffff; --tint:#fbeee7; --plate:#ffffff;
+  --good:#2f7d4f; --mid:#b07800; --bad:#b3261e;
+  --f-display:"Archivo","Helvetica Neue",Arial,sans-serif;
+  --f-body:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#0e1418; --sheet:#151d22; --ink:#e4eaed; --muted:#9aabb5; --line:#2a363e;
+  --accent:#ff7c45; --accent-ink:#1a0d06; --tint:#2a1a12; --plate:#f2f4f5;
+  --good:#6fcf97; --mid:#f2c14e; --bad:#ff8a80; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#0e1418; --sheet:#151d22; --ink:#e4eaed; --muted:#9aabb5; --line:#2a363e;
+  --accent:#ff7c45; --accent-ink:#1a0d06; --tint:#2a1a12; --plate:#f2f4f5;
+  --good:#6fcf97; --mid:#f2c14e; --bad:#ff8a80; color-scheme:dark}
+
+*{box-sizing:border-box}
+body{margin:0}
+img{max-width:100%}
+body{background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:16.5px;line-height:1.62;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+a{color:var(--accent);text-underline-offset:3px}
+a:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px}
+h1,h2,h3{font-family:var(--f-display);text-wrap:balance;margin:0;line-height:1.08}
+p{margin:0}
+.mono{font-family:var(--f-mono)}
+.eyebrow{font-family:var(--f-mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+
+/* ---------- Intro ---------- */
+header.intro{padding-block:56px 40px;border-bottom:1px solid var(--line)}
+.intro-grid{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:48px;align-items:end}
+.intro h1{font-size:clamp(44px,7.4vw,84px);font-weight:800;font-stretch:118%;letter-spacing:-.02em}
+.intro .role{margin-top:14px;font-family:var(--f-display);font-size:clamp(19px,2.3vw,24px);font-weight:500;font-stretch:100%;color:var(--muted)}
+.intro .lede{margin-top:22px;max-width:58ch;font-size:17.5px}
+.links{margin-top:24px;display:flex;flex-wrap:wrap;gap:10px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:9px 14px;border:1px solid var(--ink);border-radius:3px;font-family:var(--f-mono);font-size:13.5px;color:var(--ink);text-decoration:none}
+.btn:hover{background:var(--ink);color:var(--paper)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.btn.primary:hover{filter:brightness(1.08);background:var(--accent);color:var(--accent-ink)}
+.hero-fig{background:var(--plate);border:1px solid var(--line);padding:10px;margin:0}
+.hero-fig img{display:block;width:100%;height:auto}
+.hero-fig figcaption{font-family:var(--f-mono);font-size:11.5px;color:#55646e;padding-top:6px}
+
+/* ---------- Fit matrix ---------- */
+section.fit{padding-block:44px}
+.fit h2{font-size:26px;font-weight:700;font-stretch:105%}
+.fit .sub{color:var(--muted);margin-top:6px;max-width:62ch}
+.fit-table{margin-top:22px;overflow-x:auto;border:1px solid var(--line);background:var(--sheet)}
+table{border-collapse:collapse;width:100%;min-width:640px;font-size:15px}
+th,td{text-align:left;vertical-align:top;padding:12px 14px;border-bottom:1px solid var(--line)}
+tr:last-child td{border-bottom:0}
+thead th{font-family:var(--f-mono);font-size:11.5px;font-weight:500;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);background:var(--paper)}
+td:first-child{font-weight:600;width:28%}
+td .where{font-family:var(--f-mono);font-size:12.5px;color:var(--accent);white-space:nowrap}
+
+/* ---------- Index ---------- */
+nav.index{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;border:1px solid var(--line);background:var(--sheet);margin-bottom:56px}
+nav.index a{display:block;padding:16px;color:var(--ink);text-decoration:none;border-right:1px solid var(--line)}
+nav.index a:last-child{border-right:0}
+nav.index a:hover{background:var(--tint)}
+nav.index .no{font-family:var(--f-mono);font-size:12px;color:var(--accent)}
+nav.index .nm{display:block;margin-top:4px;font-family:var(--f-display);font-weight:700;font-size:16px;line-height:1.25}
+nav.index .tg{display:block;margin-top:6px;font-size:13px;color:var(--muted);line-height:1.4}
+
+/* ---------- Project sheet ---------- */
+article.sheet{background:var(--sheet);border:1px solid var(--line);margin-bottom:56px}
+.sheet-head{padding:32px 32px 26px;border-bottom:1px solid var(--line)}
+.sheet-head h2{margin-top:10px;font-size:clamp(28px,4vw,42px);font-weight:800;font-stretch:108%;letter-spacing:-.01em}
+.sheet-head .summary{margin-top:14px;max-width:66ch;font-size:17px}
+.titleblock{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-bottom:1px solid var(--line)}
+.titleblock div{padding:12px 16px;border-right:1px solid var(--line);min-width:0}
+.titleblock div:last-child{border-right:0}
+.titleblock dt{font-family:var(--f-mono);font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}
+.titleblock dd{margin:3px 0 0;font-size:14px;line-height:1.4}
+.sheet-body{padding:32px;display:grid;gap:36px}
+.cols{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:32px;align-items:start}
+.cols.wide-left{grid-template-columns:minmax(0,1.25fr) minmax(0,1fr)}
+.block h3{font-size:19px;font-weight:700;font-stretch:100%;margin-bottom:10px}
+.block p+p{margin-top:12px}
+.block ul{margin:0;padding-left:20px;display:grid;gap:8px}
+.block li::marker{color:var(--accent)}
+.specs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:2px solid var(--ink);border-bottom:1px solid var(--line)}
+.spec{padding:14px 14px 14px 0;min-width:0}
+.spec+.spec{padding-left:14px;border-left:1px solid var(--line)}
+.spec .v{font-family:var(--f-display);font-weight:700;font-stretch:100%;font-size:26px;line-height:1.1;font-variant-numeric:tabular-nums;white-space:nowrap}
+.spec .v small{font-family:var(--f-mono);font-size:13px;font-weight:400;color:var(--muted);margin-left:3px}
+.spec .k{margin-top:6px;font-size:13px;color:var(--muted);line-height:1.4}
+figure{margin:0}
+.plate{background:var(--plate);border:1px solid var(--line);padding:8px}
+.plate img{display:block;width:100%;height:auto}
+figcaption{margin-top:8px;font-size:13px;color:var(--muted);line-height:1.45}
+figcaption b{font-family:var(--f-mono);font-weight:500;color:var(--ink);font-size:12px;margin-right:6px}
+.gallery{display:grid;gap:20px}
+.g3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.g2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.note{background:var(--tint);border-left:3px solid var(--accent);padding:16px 18px}
+.note .eyebrow{color:var(--accent)}
+.note p{margin-top:6px}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.chip{font-family:var(--f-mono);font-size:12px;padding:3px 8px;border:1px solid var(--line);border-radius:2px;color:var(--muted)}
+
+/* status thresholds */
+.thr{overflow-x:auto;border:1px solid var(--line)}
+.thr table{min-width:420px;font-size:14px}
+.thr td{font-variant-numeric:tabular-nums;font-family:var(--f-mono);font-size:13px}
+.thr td:first-child{font-family:var(--f-body);font-size:14px;width:auto}
+.dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px;vertical-align:1px}
+.dot.g{background:var(--good)}.dot.m{background:var(--mid)}.dot.b{background:var(--bad)}
+
+/* class diagram */
+.uml{overflow-x:auto;border:1px solid var(--line);background:var(--paper);padding:16px}
+.uml svg{display:block;min-width:620px;width:100%;height:auto}
+.uml .box{fill:var(--sheet);stroke:var(--ink);stroke-width:1.2}
+.uml .hd{fill:var(--tint)}
+.uml text{fill:var(--ink);font-family:var(--f-mono);font-size:12px}
+.uml text.t{font-weight:500;font-size:13px}
+.uml text.s{fill:var(--muted);font-size:11px}
+.uml .ln{stroke:var(--ink);stroke-width:1.2;fill:none}
+.uml .tri{fill:var(--sheet);stroke:var(--ink);stroke-width:1.2}
+.uml .dash{stroke-dasharray:4 4}
+
+/* footer */
+footer{border-top:1px solid var(--line);padding-block:40px 64px}
+.foot{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:40px}
+footer h2{font-size:26px;font-weight:700;font-stretch:105%}
+footer p{margin-top:10px;max-width:60ch}
+footer .small{color:var(--muted);font-size:14px}
+
+@media (max-width:860px){
+  .intro-grid,.cols,.cols.wide-left,.foot{grid-template-columns:1fr;gap:28px}
+  nav.index{grid-template-columns:repeat(2,minmax(0,1fr))}
+  nav.index a:nth-child(2){border-right:0}
+  nav.index a:nth-child(-n+2){border-bottom:1px solid var(--line)}
+  .titleblock{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .titleblock div:nth-child(2){border-right:0}
+  .titleblock div:nth-child(-n+2){border-bottom:1px solid var(--line)}
+  .specs{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .spec:nth-child(3){padding-left:0;border-left:0}
+  .spec:nth-child(-n+2){border-bottom:1px solid var(--line)}
+  .g3{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:520px){
+  body{font-size:16px}
+  header.intro{padding-block:36px 28px}
+  .sheet-head,.sheet-body{padding:22px 18px}
+  .g3,.g2{grid-template-columns:1fr}
+  .spec .v{font-size:22px}
+  nav.index .tg{display:none}
+}
+@media (prefers-reduced-motion:no-preference){.btn,nav.index a{transition:background .15s,color .15s}}
+</style>
+
+<header class="intro">
+  <div class="wrap intro-grid">
+    <div>
+      <p class="eyebrow">Engineering portfolio · Hardware &amp; medical devices</p>
+      <h1>Cara Citron</h1>
+      <p class="role">Biomedical engineer who designs, builds and tests physical devices</p>
+      <p class="lede">I like the part of engineering where a CAD model turns into something you can hold, wire up, measure and improve. My recent work covers a 3D-printed housing for a 7&nbsp;T MRI coil, an Arduino air-quality monitor designed around asthma sufferers, a Navier–Stokes finite element solver for blood flow, and a C++ tool for cardiac MRI analysis.</p>
+      <div class="links">
+        <a class="btn primary" href="#rf-coil">See the projects ↓</a>
+        <a class="btn" href="https://github.com/caracitron20-alt" target="_blank" rel="noopener">GitHub ↗</a>
+      </div>
+    </div>
+    <figure class="hero-fig">
+      <img src="img/coil-cad.jpg" alt="Fusion 360 render of the coil housing: two concentric clear cylinders on a printed cradle, with the birdcage rungs and dipole elements installed">
+      <figcaption>Coil housing, Fusion 360 · dipole array + birdcage installed</figcaption>
+    </figure>
+  </div>
+</header>
+
+<main>
+  <section class="fit">
+    <div class="wrap">
+      <h2>Where this work meets the role</h2>
+      <p class="sub">The job asks for hands-on hardware work with an eye on users. This is where each of those shows up below.</p>
+      <div class="fit-table">
+        <table>
+          <thead><tr><th>What the team needs</th><th>What I have done</th><th>Project</th></tr></thead>
+          <tbody>
+            <tr><td>CAD and design for manufacture</td><td>Modular PLA housing split to fit the printer's build volume, material and infill chosen for RF transparency and stiffness, open-lattice phantom holder, printed device enclosure. Tool: Autodesk Fusion 360.</td><td><span class="where">01 · 02</span></td></tr>
+            <tr><td>Assembling, testing and validating complex devices</td><td>Assembled a 10-port dual-tuned coil, routed and re-soldered coax feeds, bench-tested every channel on a VNA against pass/fail criteria, then cross-checked against FDTD simulation.</td><td><span class="where">01</span></td></tr>
+            <tr><td>Medical devices</td><td>RF hardware for human brain imaging, with SAR safety evaluation against IEC limits on a computational head model.</td><td><span class="where">01</span></td></tr>
+            <tr><td>User goals and user journeys</td><td>Air monitor built around how someone with asthma would actually use it: glanceable LED, five-screen joystick menu, alarm only when everything is bad, CSV export for later.</td><td><span class="where">02</span></td></tr>
+            <tr><td>Fluidics</td><td>Wrote a Newton–Raphson finite element solver for steady incompressible Navier–Stokes flow in a branching vessel network.</td><td><span class="where">03</span></td></tr>
+            <tr><td>Thermodynamics, sensing and control</td><td>Temperature, humidity and particulate sensing with threshold logic, real-time clock and SD logging on an Arduino Mega.</td><td><span class="where">02</span></td></tr>
+            <tr><td>Software that supports hardware</td><td>Object-oriented C++ for image data, MATLAB for FEM, Arduino C++ for embedded control.</td><td><span class="where">02 · 03 · 04</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <nav class="index" aria-label="Projects">
+      <a href="#rf-coil"><span class="no">01</span><span class="nm">7 T MRI coil housing</span><span class="tg">CAD, fabrication, assembly, bench test</span></a>
+      <a href="#breathesafe"><span class="no">02</span><span class="nm">BreatheSafe monitor</span><span class="tg">User-centred embedded device</span></a>
+      <a href="#fem"><span class="no">03</span><span class="nm">Blood flow FEM solver</span><span class="tg">Fluid mechanics, numerical methods</span></a>
+      <a href="#perfusion"><span class="no">04</span><span class="nm">Cardiac MRI perfusion</span><span class="tg">C++ software design</span></a>
+    </nav>
+
+    <!-- ============ 01 ============ -->
+    <article class="sheet" id="rf-coil">
+      <div class="sheet-head">
+        <p class="eyebrow">01 · BEng research project · Medical device hardware</p>
+        <h2>Housing and validation of a dual-tuned RF coil for 7&nbsp;T brain imaging</h2>
+        <p class="summary">Deuterium metabolic imaging can show brain-tumour metabolism without radiation, but there was no commercial dual-tuned <sup>1</sup>H/<sup>2</sup>H coil for the Siemens 7&nbsp;T MAGNETOM Terra.X. I designed and built the mechanical housing and phantom holder, assembled the coil with support from the lab team, tuned and bench-tested it, and checked its safety in electromagnetic simulation.</p>
+      </div>
+      <dl class="titleblock">
+        <div><dt>Role</dt><dd>Individual BEng project, supervised by Dr Ozlem Ipek and Dr Thomas Eykyn</dd></div>
+        <div><dt>Tools</dt><dd>Fusion 360, Ultimaker S5, VNA, Sim4Life</dd></div>
+        <div><dt>Materials</dt><dd>PMMA, acrylic, PLA</dd></div>
+        <div><dt>Date</dt><dd>Oct 2025 – Apr 2026</dd></div>
+      </dl>
+      <div class="sheet-body">
+        <div class="specs">
+          <div class="spec"><div class="v">300<small>mm</small></div><div class="k">Inner bore, sized for adult heads at ~70% filling factor</div></div>
+          <div class="spec"><div class="v">8 / 8</div><div class="k">Dipole channels meeting the ≤ −12 dB return-loss target</div></div>
+          <div class="spec"><div class="v">−29.4<small>dB</small></div><div class="k">Birdcage port isolation (target ≤ −20 dB)</div></div>
+          <div class="spec"><div class="v">0.53<small>W/kg/W</small></div><div class="k">Peak SAR<sub>10g</sub>, well inside IEC limits</div></div>
+        </div>
+
+        <div class="cols wide-left">
+          <div class="block">
+            <h3>Design decisions</h3>
+            <ul>
+              <li><b>Two concentric cylinders.</b> A 300&nbsp;mm PMMA inner former carries the birdcage; a 350&nbsp;mm acrylic outer tube stiffens the assembly and holds the dipole supports. The 20&nbsp;mm radial gap fits the matching networks and coax routing while staying inside the scanner's bore-access envelope.</li>
+              <li><b>PLA for the printed parts.</b> Low dielectric constant and negligible RF loss at 300&nbsp;MHz, dimensionally stable under load, easy to iterate. 20% infill balanced stiffness against print time and mass.</li>
+              <li><b>Modular by necessity.</b> The full diameter would not fit the Ultimaker's build volume, so I split the cradle into smaller parts fastened together.</li>
+              <li><b>Built to be serviced.</b> Reusable PMMA former and serviceable matching networks, so parts can be retuned or replaced instead of rebuilding the coil.</li>
+            </ul>
+          </div>
+          <figure>
+            <div class="plate"><img src="img/coil-assembly.jpg" alt="Photo of the coil during assembly: copper birdcage rings and coaxial cables inside the clear cylinders" loading="lazy"></div>
+            <figcaption><b>FIG 1.2</b>Coil during assembly. Coax feeds were desoldered, threaded through post-drilled holes in the housing, then re-soldered.</figcaption>
+          </figure>
+        </div>
+
+        <div class="gallery g3">
+          <figure>
+            <div class="plate"><img src="img/housing-cad.jpg" alt="CAD render of the empty housing on its printed cradle" loading="lazy"></div>
+            <figcaption><b>FIG 1.3</b>Empty housing and cradle in Fusion 360.</figcaption>
+          </figure>
+          <figure>
+            <div class="plate"><img src="img/phantom-holder-cad.jpg" alt="CAD render of the phantom holder centring a cylindrical phantom in the bore" loading="lazy"></div>
+            <figcaption><b>FIG 1.4</b>Phantom holder. An open lattice centres a 200&nbsp;mm phantom radially and axially with minimal RF shadowing.</figcaption>
+          </figure>
+          <figure>
+            <div class="plate"><img src="img/coil-bench.jpg" alt="Photo of the finished coil on the lab bench connected to test equipment" loading="lazy"></div>
+            <figcaption><b>FIG 1.5</b>Finished coil on the bench, connected for S-parameter measurement.</figcaption>
+          </figure>
+        </div>
+
+        <div class="cols">
+          <div class="block">
+            <h3>Testing and validation</h3>
+            <p>I bench-tuned all eight proton dipoles and both birdcage ports under phantom load and measured the full S-matrix on a VNA. Every dipole met the −12&nbsp;dB return-loss criterion. The birdcage resonated at 45.2&nbsp;MHz with −18.6 / −15.8&nbsp;dB reflection and −29.4&nbsp;dB isolation.</p>
+            <p>I then built FDTD models of the coil with both phantoms and the "Duke" virtual human head, checked them against the bench data, and mapped B<sub>1</sub><sup>+</sup> field and SAR. The phantom holder mattered here: any offset from isocentre changes the coupling, so reproducible positioning was a precondition for a fair bench-to-simulation comparison.</p>
+          </div>
+          <figure>
+            <div class="plate"><img src="img/sar-duke.jpg" alt="Simulated B1 field and SAR maps for the birdcage on the Duke head model in axial, coronal and sagittal planes" loading="lazy"></div>
+            <figcaption><b>FIG 1.6</b>Birdcage on the Duke head model at 45.2&nbsp;MHz, normalised to 1&nbsp;W. Top: B<sub>1</sub><sup>+</sup>, mean 0.6&nbsp;µT/√W in the brain. Bottom: SAR<sub>10g</sub>.</figcaption>
+          </figure>
+        </div>
+
+        <div class="note">
+          <p class="eyebrow">What I'd change next time</p>
+          <p>The acrylic housing pulled the dipole resonance down by about 2&nbsp;MHz, which I compensated for by tuning on the bench to 299.2&nbsp;MHz. In a second revision I would design that shift in when selecting components, removing a retuning step. The next mechanical step is head-specific ergonomics: a head-shaped phantom and positioning fixtures so subjects sit at the same spot every session.</p>
+        </div>
+      </div>
+    </article>
+
+    <!-- ============ 02 ============ -->
+    <article class="sheet" id="breathesafe">
+      <div class="sheet-head">
+        <p class="eyebrow">02 · Group design project · Embedded device</p>
+        <h2>BreatheSafe: an indoor air monitor for people with asthma</h2>
+        <p class="summary">Indoor particulate levels can exceed outdoor ones after cooking or cleaning, and you can't see it happen. We built a low-cost desk device that measures temperature, humidity, PM2.5 and PM10, tells the user at a glance whether the room is fine, and logs everything for later.</p>
+      </div>
+      <dl class="titleblock">
+        <div><dt>My role</dt><dd>Enclosure CAD, overall design, soldering, assembly, SD logging, LCD and LED code</dd></div>
+        <div><dt>Team</dt><dd>4 engineers</dd></div>
+        <div><dt>Hardware</dt><dd>Arduino Mega, PMS5003, DHT11, DS1307 RTC</dd></div>
+        <div><dt>Date</dt><dd>Jan 2026</dd></div>
+      </dl>
+      <div class="sheet-body">
+        <div class="specs">
+          <div class="spec"><div class="v">£102</div><div class="k">Full bill of materials, including the 3D-printed case</div></div>
+          <div class="spec"><div class="v">4</div><div class="k">Measured parameters, each graded GOOD / MEDIUM / BAD</div></div>
+          <div class="spec"><div class="v">24<small>h+</small></div><div class="k">Time-stamped CSV logging to microSD</div></div>
+          <div class="spec"><div class="v">295<small>g</small></div><div class="k">PLA in the printed enclosure</div></div>
+        </div>
+
+        <div class="cols">
+          <div class="block">
+            <h3>Designing around the user</h3>
+            <ul>
+              <li><b>Glance, then read.</b> An RGB LED gives the overall verdict from across the room. The 16×2 LCD gives the detail when you walk over.</li>
+              <li><b>One control.</b> A joystick cycles through five screens and wraps back to the start, so there is no menu to get lost in.</li>
+              <li><b>Alarms that mean something.</b> The buzzer sounds only when every parameter is BAD, so it isn't ignored after a week.</li>
+              <li><b>Data you can take away.</b> Readings go to a CSV on microSD that opens straight in Excel, for spotting patterns or sharing with a clinician.</li>
+              <li><b>Fails gracefully.</b> If the SD card is missing or full, live readings keep working and only logging stops.</li>
+            </ul>
+          </div>
+          <div class="gallery g2">
+            <figure>
+              <div class="plate"><img src="img/bs-device-1.jpg" alt="Finished BreatheSafe device showing temperature and humidity on the LCD" loading="lazy"></div>
+              <figcaption><b>FIG 2.1</b>Live temperature and humidity screen.</figcaption>
+            </figure>
+            <figure>
+              <div class="plate"><img src="img/bs-device-2.jpg" alt="Finished BreatheSafe device showing PM10 reading and GOOD status" loading="lazy"></div>
+              <figcaption><b>FIG 2.2</b>PM10 screen with status grade.</figcaption>
+            </figure>
+          </div>
+        </div>
+
+        <div class="cols">
+          <div class="block">
+            <h3>Thresholds</h3>
+            <p style="margin-bottom:12px">Particulate limits come from the WHO 2021 air quality guidelines; temperature and humidity bands from clinical guidance for asthma.</p>
+            <div class="thr">
+              <table>
+                <thead><tr><th>Parameter</th><th><span class="dot g"></span>Good</th><th><span class="dot m"></span>Medium</th><th><span class="dot b"></span>Bad</th></tr></thead>
+                <tbody>
+                  <tr><td>Temperature (°C)</td><td>20–21.7</td><td>16–24</td><td>&lt;16 or &gt;24</td></tr>
+                  <tr><td>Humidity (%)</td><td>40–50</td><td>30–60</td><td>&lt;30 or &gt;60</td></tr>
+                  <tr><td>PM2.5 (µg/m³)</td><td>&lt;15</td><td>15–25</td><td>&gt;25</td></tr>
+                  <tr><td>PM10 (µg/m³)</td><td>&lt;45</td><td>45–75</td><td>&gt;75</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <figure>
+            <div class="plate"><img src="img/bs-pm10.jpg" alt="Plot of PM10 concentration over 24 hours" loading="lazy"></div>
+            <figcaption><b>FIG 2.3</b>24-hour PM10 log. A rise to 27&nbsp;µg/m³ in the first three hours from indoor activity, a fall to zero, then a step at hour 13 when ventilation changed.</figcaption>
+          </figure>
+        </div>
+
+        <figure>
+          <div class="plate"><img src="img/bs-wiring.jpg" alt="Wiring diagram of the Arduino Mega with sensors, LCD, joystick, RTC, SD reader, LED and buzzer" loading="lazy"></div>
+          <figcaption><b>FIG 2.4</b>Wiring diagram (Wokwi). Built permanently on a solderable PCB breadboard and housed in a Bambu Lab–printed PLA enclosure.</figcaption>
+        </figure>
+      </div>
+    </article>
+
+    <!-- ============ 03 ============ -->
+    <article class="sheet" id="fem">
+      <div class="sheet-head">
+        <p class="eyebrow">03 · Individual coursework · Fluid mechanics</p>
+        <h2>Finite element model of blood flow in a branching vessel network</h2>
+        <p class="summary">How much of the flow does each branch get, and what pressure does it take to drive it? I wrote a MATLAB finite element solver for steady, incompressible Navier–Stokes flow through a 2D arterial tree to answer both.</p>
+      </div>
+      <dl class="titleblock">
+        <div><dt>Role</dt><dd>Sole author: model, solver, report</dd></div>
+        <div><dt>Tools</dt><dd>MATLAB</dd></div>
+        <div><dt>Method</dt><dd>Taylor–Hood P2–P1, Newton–Raphson</dd></div>
+        <div><dt>Date</dt><dd>Jan 2026</dd></div>
+      </dl>
+      <div class="sheet-body">
+        <div class="specs">
+          <div class="spec"><div class="v">5–6</div><div class="k">Newton–Raphson iterations to converge (tol 10<sup>−6</sup>)</div></div>
+          <div class="spec"><div class="v">0.43<small>%</small></div><div class="k">Mass conservation error on the finest mesh</div></div>
+          <div class="spec"><div class="v">4.42<small>Pa</small></div><div class="k">Inlet-to-outlet pressure drop, consistent with Poiseuille</div></div>
+          <div class="spec"><div class="v">45 / 18 / 18 / 19</div><div class="k">Percent of flow leaving each of the four outlets</div></div>
+        </div>
+
+        <div class="gallery g2">
+          <figure>
+            <div class="plate"><img src="img/fem-velocity.jpg" alt="Velocity magnitude field in the branching vessel network" loading="lazy"></div>
+            <figcaption><b>FIG 3.1</b>Velocity magnitude on the finest mesh.</figcaption>
+          </figure>
+          <figure>
+            <div class="plate"><img src="img/fem-pressure.jpg" alt="Pressure field in the branching vessel network" loading="lazy"></div>
+            <figcaption><b>FIG 3.2</b>Pressure field driving the flow.</figcaption>
+          </figure>
+        </div>
+
+        <div class="cols">
+          <div class="block">
+            <h3>How it works</h3>
+            <p>Blood is treated as a Newtonian fluid. The solver assembles the weak form on triangular Taylor–Hood elements, which satisfy the inf–sup condition without stabilisation, and solves the fully coupled velocity–pressure system monolithically with Newton–Raphson. Boundary conditions are a prescribed inlet velocity, no-slip walls and traction-free outlets. I refined the mesh three times to confirm the answer stopped changing.</p>
+            <h3 style="margin-top:22px">What I learned from it</h3>
+            <p>The numbers converged cleanly, but the flow split was lopsided because traction-free outlets let geometry alone decide where the flow goes. Real vessel beds push back. The fix is resistance or Windkessel outlet conditions. Getting boundary conditions right matters as much as getting the solver right, and that applies just as much to a microfluidic channel as to an artery.</p>
+            <div class="chips"><span class="chip">fem_solve_script.m</span><span class="chip">navier_stokes_momentum_eqn.m</span><span class="chip">navier_stokes_mass_eqn.m</span></div>
+          </div>
+          <figure>
+            <div class="plate"><img src="img/fem-convergence.jpg" alt="Newton-Raphson residual norm against iteration number for three meshes" loading="lazy"></div>
+            <figcaption><b>FIG 3.3</b>Newton–Raphson residual against iteration for each mesh, showing quadratic convergence.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </article>
+
+    <!-- ============ 04 ============ -->
+    <article class="sheet" id="perfusion">
+      <div class="sheet-head">
+        <p class="eyebrow">04 · Object-oriented programming coursework · Software</p>
+        <h2>Cardiac MRI perfusion analysis in C++</h2>
+        <p class="summary">A command-line tool that loads a time series of cardiac MRI frames, tracks contrast agent through the left-ventricular blood pool, and reports when it arrives, when it peaks and how fast it is taken up, with plots drawn in the terminal.</p>
+      </div>
+      <dl class="titleblock">
+        <div><dt>Code</dt><dd><a href="https://github.com/caracitron20-alt/Cardiac-MRI-Perfusion-Analysis" target="_blank" rel="noopener">GitHub repository ↗</a></dd></div>
+        <div><dt>Language</dt><dd>C++</dd></div>
+        <div><dt>Input</dt><dd>PGM image series + contrast info file</dd></div>
+        <div><dt>Date</dt><dd>Dec 2025</dd></div>
+      </dl>
+      <div class="sheet-body">
+        <div class="cols">
+          <div class="block">
+            <h3>What it computes</h3>
+            <ul>
+              <li>Mean signal S(d) inside a 5×5 pixel mask on the blood pool, for every frame.</li>
+              <li>Peak frame and signal, plus the peak image rendered in the terminal.</li>
+              <li>Contrast arrival: the first frame where S(d+1) − S(d) exceeds 10.</li>
+              <li>Uptake gradient G = (S<sub>peak</sub> − S<sub>arrival</sub>) / (d<sub>peak</sub> − d<sub>arrival</sub>).</li>
+            </ul>
+          </div>
+          <div class="block">
+            <h3>How it's structured</h3>
+            <p>I kept file loading, masking and analysis in separate modules. An abstract <span class="mono">Mask</span> class lets a new region shape be added by overriding one method. <span class="mono">PerfusionImageDataset</span> extends a general <span class="mono">TemporalDataset</span>, so the time-series handling can be reused for other kinds of scan. Encapsulated image data, input validation and a verbose debug mode make failures easy to trace.</p>
+          </div>
+        </div>
+        <div class="uml" role="img" aria-label="Class diagram: SquareMask inherits from Mask; PerfusionImageDataset inherits from TemporalDataset; TemporalDataset holds Image objects; PerfusionImageDataset uses Mask.">
+          <svg viewBox="0 0 760 250" xmlns="http://www.w3.org/2000/svg">
+            <!-- Image -->
+            <rect class="box" x="20" y="20" width="200" height="88"/><rect class="hd" x="20.6" y="20.6" width="198.8" height="24"/>
+            <text class="t" x="32" y="37">Image&lt;T&gt;</text>
+            <text x="32" y="64">− m_dim : array&lt;int,2&gt;</text><text x="32" y="82">− m_data : vector&lt;T&gt;</text><text x="32" y="100">+ width() / height()</text>
+            <!-- TemporalDataset -->
+            <rect class="box" x="280" y="20" width="210" height="88"/><rect class="hd" x="280.6" y="20.6" width="208.8" height="24"/>
+            <text class="t" x="292" y="37">TemporalDataset</text>
+            <text x="292" y="64">+ load()</text><text x="292" y="82">+ size()</text><text x="292" y="100">+ operator[](i) : Image</text>
+            <!-- Perfusion -->
+            <rect class="box" x="280" y="150" width="210" height="88"/><rect class="hd" x="280.6" y="150.6" width="208.8" height="24"/>
+            <text class="t" x="292" y="167">PerfusionImageDataset</text>
+            <text x="292" y="194">+ temporal_gradient()</text><text x="292" y="212">+ peak() / arrival()</text><text x="292" y="230">+ uptake_gradient()</text>
+            <!-- Mask -->
+            <rect class="box" x="550" y="20" width="190" height="88"/><rect class="hd" x="550.6" y="20.6" width="188.8" height="24"/>
+            <text class="t" x="562" y="37">Mask «abstract»</text>
+            <text x="562" y="64"># width, height</text><text x="562" y="82">+ create_mask() = 0</text>
+            <!-- SquareMask -->
+            <rect class="box" x="550" y="150" width="190" height="88"/><rect class="hd" x="550.6" y="150.6" width="188.8" height="24"/>
+            <text class="t" x="562" y="167">SquareMask</text>
+            <text x="562" y="194">− centre (x, y)</text><text x="562" y="212">− mask_size</text><text x="562" y="230">+ create_mask()</text>
+            <!-- inheritance -->
+            <line class="ln" x1="385" y1="150" x2="385" y2="120"/><polygon class="tri" points="385,108 377,120 393,120"/>
+            <line class="ln" x1="645" y1="150" x2="645" y2="120"/><polygon class="tri" points="645,108 637,120 653,120"/>
+            <!-- composition -->
+            <line class="ln" x1="232" y1="64" x2="280" y2="64"/><polygon class="ln" points="220,64 226,59 232,64 226,69" style="fill:var(--ink)"/>
+            <!-- dependency -->
+            <path class="ln dash" d="M490 194 H520 V64 H542"/><polyline class="ln" points="536,59 544,64 536,69"/>
+            <text class="s" x="236" y="56">holds</text><text class="s" x="496" y="130">uses</text>
+          </svg>
+        </div>
+      </div>
+    </article>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <div>
+      <h2>Next</h2>
+      <p>I'm looking for a hands-on hardware role where I can design parts, build devices and test them against real users' needs. Lab automation brings together the things I've enjoyed most so far: mechanical design, fluid handling, sensing and control.</p>
+      <p class="small">Full reports for each project are available on request.</p>
+    </div>
+    <div>
+      <p class="eyebrow">Tools</p>
+      <div class="chips">
+        <span class="chip">Fusion 360</span><span class="chip">FDM 3D printing</span><span class="chip">Soldering &amp; assembly</span><span class="chip">VNA / S-parameters</span><span class="chip">Sim4Life (FDTD)</span><span class="chip">MATLAB</span><span class="chip">C++</span><span class="chip">Arduino</span>
+      </div>
+      <p class="eyebrow" style="margin-top:22px">Links</p>
+      <p style="margin-top:6px"><a href="https://github.com/caracitron20-alt" target="_blank" rel="noopener">github.com/caracitron20-alt ↗</a></p>
+    </div>
+  </div>
+</footer>
